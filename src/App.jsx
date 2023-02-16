@@ -37,6 +37,9 @@ function App() {
                     <div className="temp">
                         {data.main ? <h1>{data.main.temp.toFixed()}°</h1> : null}
                     </div>
+                    <div className="minTemp">
+                        {data.main ?  <p>M: {data.main.temp_min.toFixed()}° H: {data.main.temp_max.toFixed()}</p> : null }
+                    </div>
                     <div className="description">
                         {data.weather ? <p>{data.weather[0].main}</p> : null}
                     </div>
