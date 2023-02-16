@@ -6,6 +6,7 @@ import {apiKey} from "./Components/Key.js";
 function App() {
     const [data, setData] = useState({})
     const [location, setLocation] = useState('')
+    const [error, setError] = useState('')
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`
 
@@ -15,7 +16,15 @@ function App() {
                 setData(response.data)
                 console.log(response.data)
             })
+                .catch((error)=> {
+                 console.error(error)
+                    setError('Location not found')
+                    document.querySelector('.container').style.display = 'none'
+
+            });
             setLocation('')
+            setError('')
+            document.querySelector('.container').style.display = 'flex'
         }
     }
 
@@ -29,6 +38,7 @@ function App() {
                     placeholder='Enter Location'
                     type="text"/>
             </div>
+            <p className='error'>{error}</p>
             <div className="container">
                 <div className="top">
                     <div className="location">
